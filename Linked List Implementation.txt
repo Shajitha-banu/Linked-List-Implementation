@@ -1,0 +1,246 @@
+//Singly Linked List
+class Node{
+    int data;
+    Node next;
+    Node(int data)
+    {
+        this.data=data;
+        this.next=null;
+    }
+}
+class LinkedList
+{
+//Inserting
+    Node head,tail;
+    public void insert(int data)
+    {
+        Node newnode=new Node(data);
+        //newnode.next=head;
+        if(head==null)
+        {
+        head=newnode;
+        tail=newnode;
+        }
+        else{
+            tail.next=newnode;
+            tail=newnode;
+        }
+    }
+//Display
+    public void display()
+    {
+        Node temp=head;
+        if(temp==null)
+        {
+            System.out.println("Its empty");
+        }
+        while(temp!=null)
+        {
+            System.out.print(temp.data+" ");
+            temp=temp.next;
+        }
+
+    }
+//Insert at begining
+    public void insertAtbegin(int data)
+    {
+        Node newnode=new Node(data);
+        newnode.next=head;
+        head=newnode;
+        System.out.println("Elements");
+    }
+//Insert at specific position
+    public void insertAtSpecific(int pos,int data)
+    {
+        Node newnode=new Node(data);
+        Node temp=head;
+        for(int i=0;i<pos-1;i++)
+        {
+            temp=temp.next;
+            newnode.next=temp.next;
+           
+        } temp.next=newnode;
+    }
+    }
+public class Main
+{
+	public static void main(String[] args) {
+		LinkedList list=new LinkedList();
+		list.insert(100);
+		list.insert(200);
+		list.insert(300);
+		list.insertAtbegin(50);
+		list.insertAtSpecific(3,250);
+		list.display();
+	}
+}
+
+
+
+//Doubly linked list
+
+class Node{
+    int data;
+    Node next;
+    Node prev;
+    Node(int data)
+    {
+        this.data=data;
+        this.next=null;
+        this.prev=null;
+    }
+}
+class LinkedList
+{
+   
+//Inserting at begining
+    Node head,tail;
+    public void insertAtbegin(int data)
+    {
+        Node newnode=new Node(data);
+        if(head==null)
+        {
+        head=newnode;
+        tail=newnode;
+        }
+        else
+        {
+            newnode.next=head;
+            head.prev=newnode;
+            head=newnode;
+        }
+    }
+    
+    
+    
+//Inserting at end
+    public void insertAtend(int data)
+    {
+        Node newnode=new Node(data);
+        if(tail==null)
+        {
+        head=newnode;
+        tail=newnode;
+        }
+        else
+        {
+            tail.next=newnode;
+            newnode.prev=tail;
+            tail=newnode;
+        }
+    }
+    
+
+    
+//Delete at begin
+    public void deleteAtbegin(){
+        if(head==null){
+            System.out.println("List is empty");
+            return;
+        }
+        if(head==tail)
+        {
+            head=null;
+            tail=null;
+        }
+        else{
+            head=head.next;
+            head.prev=null;
+        }
+            
+        }
+        
+
+        
+//Delete at end
+    public void deleteAtend(){
+        if(head==tail)
+        {
+            head=null;
+            tail=null;
+        }
+        else{
+            tail=tail.prev;
+            tail.next=null;
+        }
+            
+        }
+
+        
+        
+//Insert at specific
+    public void insertAtspecific(int pos,int data)
+    {
+        Node newnode=new Node(data);
+        Node temp=head;
+        for(int i=0;i<pos-1;i++)
+        {
+            temp=temp.next;
+        }
+        newnode.next=temp.next;
+        if(temp.next!=null){
+            newnode.next.prev=newnode;
+        }
+        temp.next=newnode;
+        newnode.prev=temp;
+        }
+    
+
+//Reverse display
+     public void revdisplay(){
+         Node temp=tail;
+         while(temp!=null)
+         {
+             System.out.print(temp.data);
+             if(temp.prev !=null)
+             {
+                 System.out.print("<->");
+             }
+             temp=temp.prev;
+         }
+         System.out.println();
+     }  
+
+ //Display function
+    public void display()
+    {
+        Node temp=head;
+        if(temp==null)
+        {
+            System.out.println("Its empty");
+        }
+        
+        while(temp!=null){
+            System.out.print(temp.data);
+        if(temp.next!=null)
+        {
+            
+            System.out.print("<-> ");
+            
+            }
+            temp=temp.next;
+        }
+        
+System.out.println();
+    }
+ }
+
+   
+public class Main
+{
+	public static void main(String[] args) {
+		LinkedList doubly=new LinkedList();
+		doubly.insertAtbegin(10);
+		doubly.insertAtbegin(20);
+		doubly.insertAtbegin(30);
+		doubly.insertAtend(100);
+		doubly.insertAtend(200);
+		doubly.insertAtend(300);
+		doubly.deleteAtbegin();
+		doubly.deleteAtend();
+		doubly.insertAtspecific(3,250);
+	        doubly.display();
+		doubly.revdisplay();
+	
+	}
+}
